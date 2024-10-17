@@ -17,6 +17,7 @@ class Car(models.Model):
     with_photo = models.BooleanField(default=True, null=True, blank=True)
     volume = models.FloatField()
     image = models.ImageField(null=True, blank=True)
+    ernis = models.ImageField()
     condition = models.CharField(max_length=32)
     customs = models.CharField(max_length=32)
     availability = models.BooleanField()
@@ -78,15 +79,16 @@ class Rating(models.Model):
     def __str__(self):
         return f'{self.car}-{self.stars}'
 
-# class FavoriteCar(models.Model):
-#     # user=models.OneToOneField(UserProfile,on_delete=models.CASCADE,related_name='favorite')
-#     date=models.DateTimeField(auto_now_add=True)
+class FavoriteCar(models.Model):
+    # user=models.OneToOneField(UserProfile,on_delete=models.CASCADE,related_name='favorite')
+    date=models.DateTimeField(auto_now_add=True)
+
+    # def __str__(self):
+    #     return f'{self.user}'
+
 #
-#     # def __str__(self):
-#     #     return f'{self.user}'
-#
-# #
-# class History(models.Model):
-#     # user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-#     car = models.ForeignKey(Car, on_delete=models.CASCADE)
-#     viewed_at = models.DateTimeField(auto_now_add=True)
+class History(models.Model):
+    # user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    viewed_at = models.DateTimeField(auto_now_add=True)
+
